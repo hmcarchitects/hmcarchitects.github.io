@@ -1,138 +1,159 @@
-﻿<!DOCTYPE HTML>
 <!--
-	Snapshot by TEMPLATED
-	templated.co @templatedco
-	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+//The MIT License (MIT)
 -->
-<html>
-	<head>
-		<title>HMC Digital Practice</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-	</head>
-	<body>
-		<div class="page-wrap">
+<!DOCTYPE html>
+<html lang="en">
 
-			<!-- Nav -->
-				<nav id="nav">
-					<ul>
-						<li><a href="index.html" class="active"><span class="icon fa-home"></span></a></li>
-						<li><a href="gallery.html"><span class="icon fa-camera-retro"></span></a></li>
-						<li><a href="generic.html"><span class="icon fa-file-text-o"></span></a></li>
-					</ul>
-				</nav>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+	<title>Hydra - Sharing made easy!</title>
+	  <link rel="icon" type="image/x-icon" href="./lib/favicon.ico">
+	  <link rel="stylesheet" type="text/css" href="./lib/style.css">
+    <script type="text/javascript" src="https://ajax.cloudflare.com/cdn-cgi/nexp/dok3v=919620257c/cloudflare.min.js"></script>
+    <script src="./lib/jquery-1.11.3.min.js"></script>
+    <script src="./lib/d3.min.js"></script>
+    <script src="./lib/hydra.js"></script>
+</head>
 
-			<!-- Main -->
-				<section id="main">
+<body>
+	<header>
+		<div>
+      Inspired by <a href="http://bl.ocks.org/">bl.ocks.org</a>
+		  <span style="float:right">
+        Read
+        <a href="https://github.com/HydraShare/hydra#hydra" target="_blank"> Hydra's story </a>
+        and
+        <a href="https://github.com/HydraShare/hydra/wiki" target="_blank"> how to share Hydras!</a>
+      </span>
+    </div>
+	</header>
+	<h2 class="user-login" title="Click on images to see the details and download the files...">
+    Welcome to Hydra! <span id="last_updated" style="font-size: .45em; font-weight: normal;"></span>
+    <span style="float:right">
+			<input type="text" id="filtering" placeholder="username, component name,&hellip;" title="Filter the results by username, component name or keywords. Separate words by ,">
+      <select>
+        <option value="created_at">Newest</option>
+        <option value="modified_at">Last updated</option>
+        <option value="id">A-Z</option>
+        <!--
+        <option value="downloads">most downloaded</option>
+        <option value="most_visited">most visited</option>
+        <option value="best_rated">best rated</option>
+        -->
+      </select>
+		</span>
+	</h2>
 
-					<!-- Banner -->
-						<section id="banner">
-                            <div class="inner">
-                                <!--<h1>The Future of Digital Practice <a href="https://hmcarchitects.com/">HMC Architects</a href="https://hmcarchitects.com/"></h1>-->
-                                <h1>This page is UNDER CONSTRUCTION</h1>
-                                <p>Come back soon for a fully responsive grasshopper gallery, that we hope, will help level up the design industry</a></p>
-                                <ul class="actions">
-                                    <li><a href="#galleries" class="button alt scrolly big">Continue</a></li>
-                                </ul>
-                            </div>
-						</section>
+	<div class="examples">
+	  <br clear="both">
+	  <div class="loading">Loading; one moment please...</div>
+	</div>
 
-					<!-- Gallery -->
-						<section id="galleries">
+<script type="text/javascript">
 
-							<!-- Photo Galleries -->
-								<div class="gallery">
-									<header class="special">
-										<h2>What's New</h2>
-									</header>
-									<div class="content">
-										<div class="media">
-											<a href="images/fulls/01.jpg"><img src="images/thumbs/01.jpg" alt="" title="DOWNLOAD."<a href="https://github.com/hmcarchitects/HMC-Grasshopper-Scripts/raw/master/HMC_DigitalPractice_Template/HMC_DigitalPractice_Template.gh"> /></a>
-										</div>
-										<div class="media">
-											<a href="images/fulls/05.jpg"><img src="images/thumbs/05.jpg" alt="" title="This right here is a caption." /></a>
-										</div>
-										<div class="media">
-											<a href="images/fulls/09.jpg"><img src="images/thumbs/09.jpg" alt="" title="This right here is a caption." /></a>
-										</div>
-										<div class="media">
-											<a href="images/fulls/02.jpg"><img src="images/thumbs/02.jpg" alt="" title="This right here is a caption." /></a>
-										</div>
-										<div class="media">
-											<a href="images/fulls/06.jpg"><img src="images/thumbs/06.jpg" alt="" title="This right here is a caption." /></a>
-										</div>
-										<div class="media">
-											<a href="images/fulls/10.jpg"><img src="images/thumbs/10.jpg" alt="" title="This right here is a caption." /></a>
-										</div>
-										<div class="media">
-											<a href="images/fulls/03.jpg"><img src="images/thumbs/03.jpg" alt="" title="This right here is a caption." /></a>
-										</div>
-										<div class="media">
-											<a href="images/fulls/07.jpg"><img src="images/thumbs/07.jpg" alt="" title="This right here is a caption." /></a>
-										</div>
-									</div>
-									<footer>
-										<a href="gallery.html" class="button big">Full Gallery</a>
-									</footer>
-								</div>
-						</section>
+    // read all the available example files
+    var formatDate = d3.time.format("%B %-d, %Y"),
+        parseDate = d3.time.format.iso.parse,
+        sortBy = "created_at",
+        page = 0,
+        objectPerPage = 30, // number of objects to be loaded per page
+        keywords = [],
+        visibility = [], // 0-1 values for visibility after filtering
+        fetching,
+        data;
 
-					<!-- Contact -->
-						<section id="contact">
-							<!-- Social -->
-								<div class="social column">
-									<h3>About Me</h3>
-									<p>Mus sed interdum nunc dictum rutrum scelerisque erat a parturient condimentum potenti dapibus vestibulum condimentum per tristique porta. Torquent a ut consectetur a vel ullamcorper a commodo a mattis ipsum class quam sed eros vestibulum quisque a eu nulla scelerisque a elementum vestibulum.</p>
-									<p>Aliquet dolor ultricies sem rhoncus dolor ullamcorper pharetra dis condimentum ullamcorper rutrum vehicula id nisi vel aptent orci litora hendrerit penatibus erat ad sit. In a semper velit eleifend a viverra adipiscing a phasellus urna praesent parturient integer ultrices montes parturient suscipit posuere quis aenean. Parturient euismod ultricies commodo arcu elementum suspendisse id dictumst at ut vestibulum conubia quisque a himenaeos dictum proin dis purus integer mollis parturient eros scelerisque dis libero parturient magnis.</p>
-									<h3>Follow Me</h3>
-									<ul class="icons">
-										<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-										<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-										<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-									</ul>
-								</div>
+    // parse Uri to get the keywords onload
+    var keywords = parseUri();
 
-							<!-- Form -->
-								<div class="column">
-									<h3>Get in Touch</h3>
-									<form action="#" method="post">
-										<div class="field half first">
-											<label for="name">Name</label>
-											<input name="name" id="name" type="text" placeholder="Name">
-										</div>
-										<div class="field half">
-											<label for="email">Email</label>
-											<input name="email" id="email" type="email" placeholder="Email">
-										</div>
-										<div class="field">
-											<label for="message">Message</label>
-											<textarea name="message" id="message" rows="6" placeholder="Message"></textarea>
-										</div>
-										<ul class="actions">
-											<li><input value="Send Message" class="button" type="submit"></li>
-										</ul>
-									</form>
-								</div>
+    // update value in text box
+    if (keywords.length != 0){
+        // d3 equivalent didn't work!
+        document.getElementById("filtering").value = keywords.join(", ");
+    }
 
-						</section>
+    // This call loads Hydras - get the Hydras from googlesheets
+    // filters them based on keywords
+    // and draws the for in the first page
+    jQuery(document).ready(loadHydras());
 
-					<!-- Footer -->
-						<footer id="footer">
-							<div class="copyright">
-								&copy; Untitled Design: <a href="https://templated.co/">TEMPLATED</a>. Images: <a href="https://unsplash.com/">Unsplash</a>.
-							</div>
-						</footer>
-				</section>
-		</div>
+    // I'm copying these lines from Mike's code at http://bl.ocks.org/
+    d3.select(window)
+      .on("scroll", maybeFetch)
+      .on("resize", maybeFetch);
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.poptrox.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/skel.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+    function maybeFetch() {
+      if (!fetching && page >= 0 && d3.select(".loading").node().getBoundingClientRect().top < innerHeight) {
+          fetch();
+        }
+      }
 
-	</body>
-</html>
+    function fetch() {
+      fetching = true;
+      display(null, filter());
+    }
+
+    function display(error, data) {
+      fetching = false;
+
+      if (data.length < objectPerPage * (page -1)) {
+          // it's all already loaded to the page
+          page = -1;
+          d3.select(".loading").text("");
+          return;
+      }
+
+      // remove divs on filter - not the best practice but works for now
+      if (page == 0) d3.select(".examples").selectAll(".example").remove();
+
+      ++page;
+
+      var exampleEnter = d3.select(".examples").selectAll(".example")
+          .data(data)
+        .enter().insert("a", "br")
+          .attr("class", "example")
+          .attr("title", function(d) {return "By " + d.owner + " <" + d.created_at + ">";})
+          .attr("href", function(d) { return "http://hydrashare.github.io/hydra/viewer?owner=" + d.owner + "&fork=" + d.fork + "&id=" + encodeURIComponent(d.id); })
+            .style("background-image", function(d) { return "url(" + d.thumbnail + ")";});
+
+      exampleEnter.append("span")
+          .attr("class", "description")
+          .text(function(d) { return d.id.replace(/_/g, " "); });
+
+      exampleEnter.append("span")
+          .attr("class", "date")
+          .text(function(d) { return d.created_at; });
+
+      setTimeout(maybeFetch, 50);
+    }
+
+    // add add sort functionality
+    d3.select("select").on("change", function() {
+          sortBy = d3.select(this).property("value");
+          sortHydras(sortBy);
+          });
+
+    d3.select('#filtering').on("keypress", function(){
+        var keyCode =d3.event.keyCode;
+        if (keyCode == '13') {
+          page = 0; // starting over
+          display(null, filter());
+        }
+      });
+
+</script>
+
+<script>
+  // google analytics
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-70371400-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</body>
