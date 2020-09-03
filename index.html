@@ -1,0 +1,159 @@
+<!--
+//The MIT License (MIT)
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+	<title>Hydra - Sharing made easy!</title>
+	  <link rel="icon" type="image/x-icon" href="./lib/favicon.ico">
+	  <link rel="stylesheet" type="text/css" href="./lib/style.css">
+    <script type="text/javascript" src="https://ajax.cloudflare.com/cdn-cgi/nexp/dok3v=919620257c/cloudflare.min.js"></script>
+    <script src="./lib/jquery-1.11.3.min.js"></script>
+    <script src="./lib/d3.min.js"></script>
+    <script src="./lib/hydra.js"></script>
+</head>
+
+<body>
+	<header>
+		<div>
+      Inspired by <a href="http://bl.ocks.org/">bl.ocks.org</a>
+		  <span style="float:right">
+        Read
+        <a href="https://github.com/HydraShare/hydra#hydra" target="_blank"> Hydra's story </a>
+        and
+        <a href="https://github.com/HydraShare/hydra/wiki" target="_blank"> how to share Hydras!</a>
+      </span>
+    </div>
+	</header>
+	<h2 class="user-login" title="Click on images to see the details and download the files...">
+    Welcome to Hydra! <span id="last_updated" style="font-size: .45em; font-weight: normal;"></span>
+    <span style="float:right">
+			<input type="text" id="filtering" placeholder="username, component name,&hellip;" title="Filter the results by username, component name or keywords. Separate words by ,">
+      <select>
+        <option value="created_at">Newest</option>
+        <option value="modified_at">Last updated</option>
+        <option value="id">A-Z</option>
+        <!--
+        <option value="downloads">most downloaded</option>
+        <option value="most_visited">most visited</option>
+        <option value="best_rated">best rated</option>
+        -->
+      </select>
+		</span>
+	</h2>
+
+	<div class="examples">
+	  <br clear="both">
+	  <div class="loading">Loading; one moment please...</div>
+	</div>
+
+<script type="text/javascript">
+
+    // read all the available example files
+    var formatDate = d3.time.format("%B %-d, %Y"),
+        parseDate = d3.time.format.iso.parse,
+        sortBy = "created_at",
+        page = 0,
+        objectPerPage = 30, // number of objects to be loaded per page
+        keywords = [],
+        visibility = [], // 0-1 values for visibility after filtering
+        fetching,
+        data;
+
+    // parse Uri to get the keywords onload
+    var keywords = parseUri();
+
+    // update value in text box
+    if (keywords.length != 0){
+        // d3 equivalent didn't work!
+        document.getElementById("filtering").value = keywords.join(", ");
+    }
+
+    // This call loads Hydras - get the Hydras from googlesheets
+    // filters them based on keywords
+    // and draws the for in the first page
+    jQuery(document).ready(loadHydras());
+
+    // I'm copying these lines from Mike's code at http://bl.ocks.org/
+    d3.select(window)
+      .on("scroll", maybeFetch)
+      .on("resize", maybeFetch);
+
+    function maybeFetch() {
+      if (!fetching && page >= 0 && d3.select(".loading").node().getBoundingClientRect().top < innerHeight) {
+          fetch();
+        }
+      }
+
+    function fetch() {
+      fetching = true;
+      display(null, filter());
+    }
+
+    function display(error, data) {
+      fetching = false;
+
+      if (data.length < objectPerPage * (page -1)) {
+          // it's all already loaded to the page
+          page = -1;
+          d3.select(".loading").text("");
+          return;
+      }
+
+      // remove divs on filter - not the best practice but works for now
+      if (page == 0) d3.select(".examples").selectAll(".example").remove();
+
+      ++page;
+
+      var exampleEnter = d3.select(".examples").selectAll(".example")
+          .data(data)
+        .enter().insert("a", "br")
+          .attr("class", "example")
+          .attr("title", function(d) {return "By " + d.owner + " <" + d.created_at + ">";})
+          .attr("href", function(d) { return "http://hydrashare.github.io/hydra/viewer?owner=" + d.owner + "&fork=" + d.fork + "&id=" + encodeURIComponent(d.id); })
+            .style("background-image", function(d) { return "url(" + d.thumbnail + ")";});
+
+      exampleEnter.append("span")
+          .attr("class", "description")
+          .text(function(d) { return d.id.replace(/_/g, " "); });
+
+      exampleEnter.append("span")
+          .attr("class", "date")
+          .text(function(d) { return d.created_at; });
+
+      setTimeout(maybeFetch, 50);
+    }
+
+    // add add sort functionality
+    d3.select("select").on("change", function() {
+          sortBy = d3.select(this).property("value");
+          sortHydras(sortBy);
+          });
+
+    d3.select('#filtering').on("keypress", function(){
+        var keyCode =d3.event.keyCode;
+        if (keyCode == '13') {
+          page = 0; // starting over
+          display(null, filter());
+        }
+      });
+
+</script>
+
+<script>
+  // google analytics
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-70371400-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</body>
