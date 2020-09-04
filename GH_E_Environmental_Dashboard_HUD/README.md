@@ -3,7 +3,7 @@ This Script allows you to analyize your site and buildings environmental conditi
 
 This file has been submitted by [hmcarchitects](https://github.com/hmcarchitects)
 
-[Check out this example on Hydra!](http://hydrashare.github.io/hydra/viewer?owner=hmcarchitects&fork=hydra&id=GH_E_Environmental_Dashboard_HUD)
+[Check out this example on Hydra!](http://hmcarchitects.github.io/hmcarchitects.github.io/viewer?owner=hmcarchitects&fork=hydra&id=GH_E_Environmental_Dashboard_HUD)
 ### Tags 
 Grasshopper, HumanUI, Human, Ladybug, Honeybee, Environmental Analysis
 ### Thumbnail 
