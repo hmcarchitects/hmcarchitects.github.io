@@ -1,5 +1,5 @@
 ### Description 
-This Script allows you optomize light of sight from two variable locations
+This Script allows you optimize light of sight from two variable locations
 
 This file has been submitted by [hmcarchitects](https://github.com/hmcarchitects)
 
