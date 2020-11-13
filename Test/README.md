@@ -3,7 +3,7 @@ Template
 
 This file has been submitted by [hmcarchitects](https://github.com/hmcarchitects)
 
-[Check out this example on Hydra!](http://hmcarchitects.github.io/hmcarchitects.github.io/viewer?owner=hmcarchitects&fork=hmcarchitects&id=Test)
+[Check out this example on Hydra!](http://hmcarchitects.github.io/hmcarchitects.github.io/viewer?owner=hmcarchitects&fork=github.com&id=Test)
 Change Test
 ### Tags 
 Test, Grasshopper
