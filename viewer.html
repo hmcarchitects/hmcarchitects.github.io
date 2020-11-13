@@ -99,7 +99,7 @@
 
 <script data-cfasync="false" type="text/javascript">
 var example,
-	searchwkeywordbasepath = "https://hmcarchitects.github.io/hydra/index.html?keywords=",
+	searchwkeywordbasepath = "https://hmcarchitects.github.io/hmcarchitects.github.io/index.html?keywords=",
 	scale = 1, // current zoom
 	offset = "0,0",
 	slide = 0; // current offset from the center default is 0,0
@@ -237,7 +237,8 @@ function generateContent(){
 	  .attr("class","date")
 	  .text(example.created_at);
 	header.append("a")
-	  .attr("href","https://hydrashare.github.io/hydra/index.html")
+	//updated hydrashare.github.io to hmcarchitects and hydra to hmcarchitects.github.io
+	  .attr("href","https://hmcarchitects.github.io/hmcarchitects.github.io/index.html")
 	  .style("float","right")
 	  .text("Return to Main Page")
 
@@ -346,7 +347,7 @@ function generateContent(){
 		// update global variables
 		slide = slide;
 
-		var newState = "/hydra/viewer?owner=" + example.owner + "&fork=" + example.fork + "&id=" + example.description + "&slide=" + slide + "&scale=" + scale + 
+		var newState = "/hmcarchitects.github.io/viewer?owner=" + example.owner + "&fork=" + example.fork + "&id=" + example.description + "&slide=" + slide + "&scale=" + scale + 
 		"&offset=" + offset.join(",");
 
 		history.pushState(null, null, newState);
@@ -356,7 +357,7 @@ function generateContent(){
 		// update global variables
 		scale = scale;
 		offset = offset;
-		var newState = "/hydra/viewer?owner=" + example.owner + "&fork=" + example.fork + "&id=" + example.description + "&slide=" + slide + "&scale=" + scale + 
+		var newState = "/hmcarchitects.github.io/viewer?owner=" + example.owner + "&fork=" + example.fork + "&id=" + example.description + "&slide=" + slide + "&scale=" + scale + 
 		"&offset=" + offset.join(",");
 
 		history.replaceState(null, null, newState);
