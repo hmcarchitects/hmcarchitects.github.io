@@ -38,11 +38,9 @@
         <option value="created_at">Newest</option>
         <option value="modified_at">Last updated</option>
         <option value="id">A-Z</option>
-        <!--
         <option value="downloads">most downloaded</option>
         <option value="most_visited">most visited</option>
         <option value="best_rated">best rated</option>
-        -->
       </select>
 		</span>
 	</h2>
@@ -59,7 +57,7 @@
         parseDate = d3.time.format.iso.parse,
         sortBy = "created_at",
         page = 0,
-        objectPerPage = 30, // number of objects to be loaded per page
+        objectPerPage = 25, // number of objects to be loaded per page
         keywords = [],
         visibility = [], // 0-1 values for visibility after filtering
         fetching,
@@ -115,7 +113,8 @@
         .enter().insert("a", "br")
           .attr("class", "example")
           .attr("title", function(d) {return "By " + d.owner + " <" + d.created_at + ">";})
-          .attr("href", function(d) { return "http://hydrashare.github.io/hydra/viewer?owner=" + d.owner + "&fork=" + d.fork + "&id=" + encodeURIComponent(d.id); })
+	  //Changed Hydra to hmcarchitects
+          .attr("href", function(d) { return "http://hmcarchitects.github.io/hydra/viewer?owner=" + d.owner + "&fork=" + d.fork + "&id=" + encodeURIComponent(d.id); })
             .style("background-image", function(d) { return "url(" + d.thumbnail + ")";});
 
       exampleEnter.append("span")
