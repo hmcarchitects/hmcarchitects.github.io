@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
@@ -140,7 +140,7 @@ function parseUri(){
 	slide = inputParameters.slide;
 
 	// read the json file
-	var githubBase = "https://raw.githubusercontent.com/" + owner + "/" + fork + "/master/" + id;
+    var githubBase = "https://raw.githubusercontent.com/hmcarchitects/hmcarchitects.github.io/master/" + id;
 	var jsonFile = githubBase + "/input.json";
 
 	var formatDate = d3.time.format("%B %-d, %Y"),
