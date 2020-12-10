@@ -1,192 +1,197 @@
 html {
-  min-width: 1040px;
+    min-width: 1040px;
 }
 
 body {
-  font-family: "Helvetica Neue", Helvetica, sans-serif;
-  margin: 1em auto 4em auto;
-  position: relative;
-  tab-size: 2;
-  width: 960px;
+    # background-image: url("https://raw.githubusercontent.com/hmcarchitects/hmcarchitects.github.io/gh-pages/lib/DP%20Presentation%20Resources%20for%20PPT5.png");
+    # background-image: url("https://raw.githubusercontent.com/hmcarchitects/hmcarchitects.github.io/gh-pages/lib/DP%20Presentation%20Resources%20for%20PPT12.png");
+    background-position: right bottom;
+    background-color: #515465;
+    font-family: "Helvetica Neue", Helvetica, sans-serif;
+    margin: 3em auto auto auto;
+    position: relative;
+    tab-size: 2;
+    width: 960px;
 }
 
 h1 {
-  font-size: 64px;
-  font-weight: 300;
-  letter-spacing: -2px;
-  margin: .3em 0 .1em 0;
+    font-size: 64px;
+    font-weight: 300;
+    letter-spacing: -2px;
+    margin: .3em 0 .1em 0;
 }
 
 h2 {
-  margin-top: 2em;
+    margin-top: 2em;
 }
 
 h1, h2 {
-  text-rendering: optimizeLegibility;
+    text-rendering: optimizeLegibility;
 }
 
-h2 a {
-  color: #ccc;
-  left: -20px;
-  position: absolute;
-  width: 740px;
-}
+    h2 a {
+        color: #ccc;
+        left: -20px;
+        position: absolute;
+        width: 740px;
+    }
 
 .main-link {
-  text-align: right;
-  width: 100%;
+    text-align: right;
+    width: 100%;
 }
 
-.header{
-  color: #555;
+.header {
+    color: #555;
 }
-		
+
 image {
-  cursor: move;
+    cursor: move;
 }
 
 .overlay {
-  cursor: move;
-  fill: #DEDEDE;
-  pointer-events: all;  
-  border: 2px solid #DEDEDE;
+    cursor: move;
+    fill: #DEDEDE;
+    pointer-events: all;
+    border: 2px solid #DEDEDE;
 }
 
 .date {
-  color: #aaa;
-  margin-left: 1em;
+    color: #aaa;
+    margin-left: 1em;
 }
 
 footer {
-  margin-top: 8em;
+    margin-top: 8em;
 }
 
 aside {
-  font-size: small;
-  left: 780px;
-  position: absolute;
-  text-align: right;
-  width: 180px;
+    font-size: small;
+    left: 780px;
+    position: absolute;
+    text-align: right;
+    width: 180px;
 }
 
 p {
-  line-height: 1.5em;
-  width: 720px;
+    line-height: 1.5em;
+    width: 720px;
 }
 
 blockquote {
-  width: 640px;
+    width: 640px;
 }
 
 li {
-  width: 680px;
+    width: 680px;
 }
 
 a {
-  color: steelblue;
+    color: #ccc;
 }
 
-a:not(:hover) {
-  text-decoration: none;
-}
+    a:not(:hover) {
+        text-decoration: none;
+    }
 
 pre, code, textarea {
-  font-family: "Menlo", monospace;
-  line-height: normal;
+    font-family: "Menlo", monospace;
+    line-height: normal;
 }
 
 textarea {
-  font-size: 100%;
+    font-size: 100%;
 }
 
 pre {
-  border-left: solid 2px #ccc;
-  padding-left: 18px;
-  margin: 2em 0 2em -20px;
-  width: 960px;
-  overflow-x: auto;
+    border-left: solid 2px #ccc;
+    padding-left: 18px;
+    margin: 2em 0 2em -20px;
+    width: 960px;
+    overflow-x: auto;
 }
 
 .html .value,
 .javascript .string,
 .javascript .regexp {
-  color: #756bb1;
+    color: #756bb1;
 }
 
 .html .tag,
 .css .tag,
 .javascript .keyword {
-  color: #3182bd;
+    color: #3182bd;
 }
 
 aside,
 .comment {
-  color: #636363;
+    color: #636363;
 }
 
 .html .doctype,
 .javascript .number {
-  color: #31a354;
+    color: #31a354;
 }
 
 .html .attribute,
 .css .attribute,
 .javascript .class,
 .javascript .special {
-  color: #e6550d;
+    color: #e6550d;
 }
 
 a.example {
-  background-position: 50% 0%;
-  border: solid 1px #eee;
-  border-bottom: solid 1px #ccc;
-  box-sizing: border-box;
-  -o-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -ms-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  display: inline-block;
-  float: left;
-  height: 82px;
-  line-height: normal;
-  margin: 0 10px 10px 0;
-  position: relative;
-  text-shadow: 1px 1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, -1px -1px 0 #fff;
-  transition: ease 750ms background-position;
-  -webkit-transition: ease 750ms background-position;
-  -moz-transition: ease 750ms background-position;
-  -ms-transition: ease 750ms background-position;
-  -o-transition: ease 750ms background-position;
-  width: 232px;
+    background-position: 50% 0%;
+    border: solid 5px #909090;
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    display: inline-block;
+    float: left;
+    height: 200px;
+    line-height: normal;
+    margin: 10px 10px 50px 10px;
+    position: relative;
+    align-items: center text-shadow: 1px 1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, -1px -1px 0 #fff;
+    transition: cubic-bezier(0.75, -0.06, 0.37, 1.01) 5000ms background-position;
+    -webkit-transition: ease 750ms background-position;
+    -moz-transition: ease 750ms background-position;
+    -ms-transition: ease 750ms background-position;
+    -o-transition: ease 750ms background-position;
+    width: 200px;
 }
 
-a.example:nth-child(4n) {
-  margin-right: 0;
-}
+    a.example:nth-child(4n) {
+        margin-right: 0;
+    }
 
-a.example:hover,
-a.example:focus {
-  background-color: #eee;
-  background-position: 50% 100%;
-  text-decoration: none;
-}
+    a.example:hover,
+    a.example:focus {
+        background-color: #eee;
+        background-position: 50% 100%;
+        text-decoration: none;
+    }
 
-a.example .description,
-a.example .date {
-  position: absolute;
-  padding: 10px;
-  z-index: 2;
-}
+    a.example .description,
+    a.example .date {
+        position: absolute;
+        padding: 0px;
+        z-index: 2;
+    }
 
-a.example .description {
-  top: 0;
-  color: #000;
-}
+    a.example .description {
+        top: 210px;
+        background-color: 90,90,90,.5;
+        align-items: center;
+        text-align: center;
+        Position: absolute;
+        color: #000;
+    }
 
-a.example .date {
-  display: none;
-}
+    a.example .date {
+        display: none;
+    }
 
-a.example:hover .description {
-  text-decoration: underline;
-}
+    a.example:hover .description {
+        text-decoration: underline;
+    }
