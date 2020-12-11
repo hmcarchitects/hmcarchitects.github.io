@@ -162,7 +162,7 @@
                     .data(examples)
                     .enter().insert("a", "br")
                     .attr("class", "example")
-                    .attr("href", function (d) { return "http://hydrashare.github.io/hydra/viewer?owner=" + d.owner + "&fork=" + d.fork + "&id=" + d.id; })
+                    .attr("href", function (d) { return "http://hmcarchitects.github.io/viewer?owner=hmcarchitects&fork=hmcarchitects.github.io&id=" + d.id; })
                     .style("background-image", function (d) { return "url(" + d.thumbnail + ")"; });
                 exampleEnter.append("span")
                     .attr("class", "description")
